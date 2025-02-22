@@ -1,6 +1,6 @@
-const GITHUB_TOKEN = 'LETAKKAN_TOKEN_ANDA_DI_SINI';
-const REPO_OWNER = 'USERNAME_GITHUB_ANDA';
-const REPO_NAME = 'laporan-guru-data';
+const GITHUB_TOKEN = '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';
+const REPO_OWNER = 'KLHui93';
+const REPO_NAME = 'laporangurubertugas';
 const FILE_PATH = 'data/reports.json';
 
 async function loadReportsFromGitHub() {
