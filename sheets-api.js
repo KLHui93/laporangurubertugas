@@ -32,7 +32,6 @@ async function saveReportsToSheets(reports) {
         console.log('Saving reports:', reports);
         const formData = new FormData();
         formData.append('data', JSON.stringify(reports));
-        formData.append('sheet_id', SHEET_ID);
         
         const response = await fetch('save_to_sheets.php', {
             method: 'POST',

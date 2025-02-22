@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require __DIR__ . '/vendor/autoload.php';
 
-$sheet_id = $_POST['sheet_id'];
+$sheet_id = '1L7HIdiPbORqZ143SIYb4SiAXT0OdS8T-4DuhFVv9nIE';  // Hardcode ID
 $reports = json_decode($_POST['data'], true);
 
 $client = new Google_Client();
