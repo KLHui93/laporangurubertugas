@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Bertugas Guru - Sistem Rekod</title>
-    <script src="github-api.js" defer></script>
+    <script src="sheets-api.js" defer></script>
     <style>
         :root {
             --primary-color: #1a237e;
@@ -1113,11 +1113,11 @@
                 checked: isVerified
             };
             
-            // Save locally and to GitHub
+            // Save locally and to Sheets
             localStorage.setItem('teacherReports', JSON.stringify(reports));
-            const saved = await saveReportsToGitHub(reports);
+            const saved = await saveReportsToSheets(reports);
             if (!saved) {
-                alert('Gagal menyimpan ke server. Data hanya disimpan secara lokal.');
+                alert('Gagal menyimpan ke Google Sheets. Data hanya disimpan secara lokal.');
             }
             
             // Update calendar
@@ -1132,16 +1132,14 @@
 
         // Load data when page loads
         window.addEventListener('load', async () => {
-            // Load from localStorage first
             const savedReports = localStorage.getItem('teacherReports');
             if (savedReports) {
                 Object.assign(reports, JSON.parse(savedReports));
             }
             
-            // Then try to load from GitHub
-            const githubReports = await loadReportsFromGitHub();
-            if (githubReports) {
-                Object.assign(reports, githubReports);
+            const sheetsReports = await loadReportsFromSheets();
+            if (sheetsReports) {
+                Object.assign(reports, sheetsReports);
                 localStorage.setItem('teacherReports', JSON.stringify(reports));
             }
             
