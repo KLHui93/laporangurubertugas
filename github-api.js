@@ -1,4 +1,4 @@
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = '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';
 const REPO_OWNER = 'KLHui93';
 const REPO_NAME = 'laporangurubertugas';
 const FILE_PATH = 'data/reports.json';
