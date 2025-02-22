@@ -37,7 +37,16 @@ async function saveReportsToGitHub(reports) {
                     'Accept': 'application/vnd.github.v3+json'
                 }
             }
-        ).then(res => res.json());
+        ).then(res => {
+            if (!res.ok) {
+                console.error('Error response:', res.status, res.statusText);
+                return res.text().then(text => {
+                    console.error('Error details:', text);
+                    throw new Error('Failed to get file');
+                });
+            }
+            return res.json();
+        });
 
         // Update file
         const response = await fetch(
