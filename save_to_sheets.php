@@ -1,11 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require __DIR__ . '/vendor/autoload.php';
 
 $sheet_id = $_POST['sheet_id'];
 $reports = json_decode($_POST['data'], true);
 
 $client = new Google_Client();
-$client->setAuthConfig('credentials.json');
+$client->setAuthConfig(__DIR__ . '/credentials.json');
 $client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
 
 $service = new Google_Service_Sheets($client);

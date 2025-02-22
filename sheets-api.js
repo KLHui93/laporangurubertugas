@@ -1,4 +1,4 @@
-const SHEET_ID = '1L7HIdiPbORqZ143SIYb4SiAXT0OdS8T-4DuhFVv9nIE/edit';  // ID dari URL Google Sheet anda
+const SHEET_ID = '1L7HIdiPbORqZ143SIYb4SiAXT0OdS8T-4DuhFVv9nIE';  // ID dari URL Google Sheet anda
 const SHEET_NAME = 'Reports';
 const SHEET_RANGE = 'A:B';
 
@@ -29,6 +29,7 @@ async function loadReportsFromSheets() {
 
 async function saveReportsToSheets(reports) {
     try {
+        console.log('Saving reports:', reports);
         const formData = new FormData();
         formData.append('data', JSON.stringify(reports));
         formData.append('sheet_id', SHEET_ID);
@@ -38,7 +39,10 @@ async function saveReportsToSheets(reports) {
             body: formData
         });
         
-        if (!response.ok) throw new Error('Failed to save to Sheets');
+        const responseText = await response.text();
+        console.log('PHP Response:', responseText);
+        
+        if (!response.ok) throw new Error(`Failed to save to Sheets: ${responseText}`);
         return true;
     } catch (error) {
         console.error('Error saving to Sheets:', error);
